@@ -54,7 +54,7 @@ btnVideoStop.onclick = function(e) {
     e.preventDefault();
     // stop video stream
     if (localStream != null) {
-        localStream.stop();
+        localStream.getTracks().forEach(track => track.stop())
     }
 
     // kill all connections
