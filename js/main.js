@@ -163,7 +163,7 @@ function establishRTCConnection(room) {
 
             // send local sdp to remote
             signallingServer.sendSDP(sessionDescription);
-        }, function(e){console.log(e)});
+        }, errorHandler);
     }
 
     // got sdp from remote
@@ -203,6 +203,7 @@ function establishRTCConnection(room) {
     // when received ICE candidate
     signallingServer.onReceiveICECandidate = function(candidate) {
         trace('Set remote ice candidate');
+        console.log('signal receive ice candidate', candidate)
         localPeerConnection.addIceCandidate(new RTCIceCandidate(candidate));
     }
 
