@@ -38,6 +38,7 @@
         <div id="remotes"></div>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/simplewebrtc-with-adapter.bundle.js"></script>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
         <script>
             // grab the room from the URL
             var room = location.search && location.search.split('?')[1];
@@ -50,7 +51,7 @@
                 remoteVideosEl: '',
                 // immediately ask for camera access
                 autoRequestMedia: true,
-                debug: true,
+                debug: false,
                 detectSpeakingEvents: true
             });
 
@@ -77,7 +78,7 @@
             });
             webrtc.on('videoAdded', function (video, peer) {
                 console.log('fuck video added', peer);
-                console.log('video', video);
+                console.log('video', video.videoWidth, video.Height);
                 var remotes = document.getElementById('remotes');
                 if (remotes) {
                     var d = document.createElement('div');
