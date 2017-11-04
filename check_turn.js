@@ -9,6 +9,7 @@ function checkTURNServer(turnConfig, timeout){
       , myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection   //compatibility for firefox and chrome
       , pc = new myPeerConnection({iceServers:[turnConfig]})
       , noop = function(){};
+    console.log(pc)
     pc.createDataChannel("");    //create a bogus data channel
     pc.createOffer(function(sdp){
       if(sdp.sdp.indexOf('typ relay') > -1){ // sometimes sdp contains the ice candidates...

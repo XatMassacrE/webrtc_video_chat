@@ -37,6 +37,10 @@ video{
     position: relative;
 }
 
+.videoContainer{
+    height: 100%;
+}
+
 .local-video{
     margin: 16px;
     position: absolute;
