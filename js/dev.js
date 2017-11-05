@@ -25,10 +25,16 @@ function setBtn() {
 function checkRoom() {
     val = room.val()
     if (val == undefined || val.length < 1) {
-        alert('请输入教室编号');
+        var msg = '请输入教室编号'
+        showTip(msg, 'danger')
         return false;
     }
     return val
+}
+
+function showTip(msg, type) {
+  var tip = $('#tip')
+  tip.stop(true).prop('class', 'alert alert-' + type).text(msg).fadeIn(500).delay(2000).fadeOut(500);
 }
 
 start.click(function(e) {
@@ -37,7 +43,8 @@ start.click(function(e) {
     webrtc.createRoom(val, function (err, name) {
         console.log(' create room cb', arguments);
         if (!err) {
-            alert('教室创建成功, 同学可以输入 "' + name + '" 来加入教室')
+            var msg = '教室创建成功, 同学可以输入 "' + name + '" 来加入教室'
+            showTip(msg, 'success')
             setBtn()
         } else {
             console.log(err);
@@ -47,6 +54,8 @@ start.click(function(e) {
 stop.click(function(e) {
     e.preventDefault();
     webrtc.leaveRoom()
+    var msg = '断开成功'
+    showTip(msg, 'success')
     start.prop('disabled', false)
     join.prop('disabled', false)
     stop.prop('disabled', true)
@@ -61,10 +70,12 @@ webrtc.on('readyToCall', function () {
       webrtc.joinRoom(val, function(err, room) {
           if (!err) {
               if (Object.keys(room.clients).length > 0) {
-                  alert('加入教室成功！')
+                  var msg = '加入教室成功！'
+                  showTip(msg, 'success')
                   setBtn()
               } else {
-                  alert('您输入的教室编号不存在，请修改后再次加入')
+                  var msg = '您输入的教室编号不存在，请修改后再次加入'
+                  showTip(msg, 'danger')
               }
           } else {
               console.log(err)

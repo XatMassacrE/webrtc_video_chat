@@ -1,16 +1,15 @@
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
 body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100vh;
     padding: 0px 0px;
     /*background-color: black;*/
+}
+
+.main {
+    position: absolute;
+    width: 100%;
 }
 
 .main, nav{
